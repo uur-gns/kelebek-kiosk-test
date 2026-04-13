@@ -124,9 +124,6 @@ function renderLandingPage() {
     landing.innerHTML = `
         <div class="cta-row">
             <span>Yeni Koleksiyonları Keşfetmek İçin Tıklayın</span>
-            <svg class="cta-cursor" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 4L8 32L16 24L20 36L24 34L20 22L30 22Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path>
-            </svg>
         </div>
         <div class="cta-click">
             <div class="click-wrap">
