@@ -220,7 +220,7 @@ function renderVideo(videoUrl) {
     overlay.id = 'video-popup';
 
     overlay.innerHTML = `
-        <video class="main-video" controls autoplay>
+        <video class="main-video" autoplay>
             <source src="${videoUrl}" type="video/mp4">
             Tarayıcınız video oynatmayı desteklemiyor.
         </video>
