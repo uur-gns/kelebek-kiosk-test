@@ -39,17 +39,17 @@ const menuData = [
         id: "c5",
         title: "Majesty Köşe Koltuk",
         imageUrl: "assets/img/MAJESTY.png",
-        subItems: [
-            { id: "s5_1", title: "Ürün Yok", imageUrl: "assets/img/MAJESTY.png", videoUrl: "assets/video/majesty-video.mp4" }
-        ]
+        videoUrl: "assets/video/majesty-video.mp4"
     }
 ];
+
 
 var states = {
     currentView: "landing",
     idleTimer: null,
     activeCollectionId: null,
 };
+
 
 
 const IDLE_LIMIT = 5 * 60 * 1000;
@@ -166,13 +166,18 @@ function renderMainMenuPage() {
             <div class="gallery-item-text">${item.title}</div>
         `;
         galleryItem.addEventListener('click', () => {
-            transitionTo(renderSubMenuPage, item);
+            if (item.videoUrl) {
+                renderVideo(item.videoUrl);
+            } else {
+                transitionTo(renderSubMenuPage, item);
+            }
         });
         container.appendChild(galleryItem);
     });
 
     pageContent.appendChild(container);
 }
+
 
 function renderSubMenuPage(collectionItem) {
     states.currentView = "secondary";
@@ -205,6 +210,7 @@ function renderSubMenuPage(collectionItem) {
     pageContent.appendChild(container);
 }
 
+
 function renderVideo(videoUrl) {
     const previousView = states.currentView;
     states.currentView = 'video';
@@ -214,36 +220,41 @@ function renderVideo(videoUrl) {
     overlay.id = 'video-popup';
 
     overlay.innerHTML = `
-        <div class="video-wrapper">
-            <div class="close-video">Kapat</div>
-            <video class="main-video" controls autoplay>
-                <source src="${videoUrl}" type="video/mp4">
-                Tarayıcınız video oynatmayı desteklemiyor.
-            </video>
-        </div>
+        <video class="main-video" controls autoplay>
+            <source src="${videoUrl}" type="video/mp4">
+            Tarayıcınız video oynatmayı desteklemiyor.
+        </video>
     `;
 
     document.body.appendChild(overlay);
 
-    const closePopup = () => {
+    showGoBackButton();
+    showGoHomeButton();
+
+    const header = document.querySelector('.site-header');
+    header.classList.add('on-top');
+
+    const closePopup = (navigateTo = null) => {
         overlay.remove();
+        header.classList.remove('on-top');
         states.currentView = previousView;
         resetIdleTimer();
+        if (navigateTo) transitionTo(navigateTo);
     };
 
-    overlay.querySelector('.close-video').addEventListener('click', closePopup);
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closePopup();
-    });
+    document.querySelector('#go-back-button').addEventListener('click', () => closePopup(), { once: true });
+    document.querySelector('#go-home-button').addEventListener('click', () => closePopup(renderLandingPage), { once: true });
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#go-home-button").addEventListener('click', () => {
+        if (states.currentView === 'video') return;
         transitionTo(renderLandingPage);
     });
 
     document.querySelector("#go-back-button").addEventListener('click', () => {
+        if (states.currentView === 'video') return;
         if (states.currentView === 'secondary') {
             transitionTo(renderMainMenuPage);
         } else if (states.currentView === 'main') {

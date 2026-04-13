@@ -66,14 +66,6 @@ body[data-active-view="landing"] .site-header {
     width: 30vw;
 }
 
-body[data-active-view="main"] .logo-container {
-    width: 35vw;
-}
-
-body[data-active-view="landing"] .logo-container {
-    width: 35vw;
-}
-
 .navigation-buttons {
     display: flex;
     width: 100%;
@@ -93,6 +85,8 @@ body[data-active-view="landing"] .logo-container {
 .navigation-button img {
     height: 2.5vw;
 }
+
+
 
 .page-content {
     width: 100%;
@@ -261,6 +255,7 @@ body[data-active-view="landing"] .logo-container {
     margin-top: -2.4vw;
 }
 
+
 .secondary-gallery-container {
     display: flex;
     width: 100%;
@@ -270,7 +265,7 @@ body[data-active-view="landing"] .logo-container {
 }
 
 .secondary-gallery-container .gallery-item {
-    max-width: 32vw;
+    max-width: 30vw;
 }
 
 .secondary-gallery-container .gallery-item:nth-child(2) {
@@ -284,6 +279,7 @@ body[data-active-view="landing"] .logo-container {
 .secondary-gallery-container .gallery-item:nth-child(even) {
     margin-top: -0.8vw;
 }
+
 
 .gallery-item {
     cursor: pointer;
@@ -334,8 +330,9 @@ body[data-active-view="landing"] .logo-container {
     align-items: center;
     justify-content: center;
     font-family: 'Miller Banner', sans-serif;
-    font-size: 1vw;
+    font-size: 1.4vw;
 }
+
 
 .video-overlay {
     position: fixed;
@@ -343,8 +340,8 @@ body[data-active-view="landing"] .logo-container {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
+    background-color: #000;
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -352,34 +349,26 @@ body[data-active-view="landing"] .logo-container {
     animation: fadeIn 0.4s forwards;
 }
 
-.video-wrapper {
-    position: relative;
-    width: 90vw;
-    max-width: 1200px;
-    aspect-ratio: 16 / 9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .main-video {
     width: 100%;
     height: 100%;
-    border-radius: 1vw;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    object-fit: contain;
     background-color: #000;
 }
 
-.close-video {
-    position: absolute;
-    top: -4vw;
-    right: 0;
-    color: white;
-    font-size: 2vw;
-    font-family: sans-serif;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.site-header.on-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
+    height: auto;
+    padding: 1.5vw 0;
+}
+
+.site-header.on-top .logo-container {
+    display: none;
 }
 
 @keyframes fadeIn {
