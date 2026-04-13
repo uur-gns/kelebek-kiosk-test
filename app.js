@@ -40,7 +40,7 @@ const menuData = [
         title: "Majesty Köşe Koltuk",
         imageUrl: "assets/img/MAJESTY.png",
         subItems: [
-            { id: "s5_1", title: "Ürün İncelemesi", imageUrl: "assets/img/MAJESTY.png", videoUrl: "assets/video/majesty-video.mp4" }
+            { id: "s5_1", title: "Ürün Yok", imageUrl: "assets/img/MAJESTY.png", videoUrl: "assets/video/majesty-video.mp4" }
         ]
     }
 ];
